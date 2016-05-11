@@ -12,6 +12,15 @@ class consul::install {
       mode   => '0755',
     }
   }
+  
+  if $consul::ui_dir {
+    file { $consul::ui_dir:
+      ensure => 'directory',
+      owner  => $consul::user,
+      group  => $consul::group,
+      mode   => '0755',
+    }
+  }
 
   case $consul::install_method {
     'url': {
